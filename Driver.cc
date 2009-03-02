@@ -7,14 +7,14 @@
 #include "Driver.h"
 #include "skipList.h"
 
-#define LINES_PER_PAGE 40
+#define LINES_PER_PAGE 40.0
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
         skipList *index = skipCreate();
-        int lines = 1;
+        int lines = 0;
         string word, line;
         
         ifstream inFile;
@@ -42,7 +42,8 @@ int main(int argc, char *argv[])
                 }
                 inFile.close();
         }
-        skipPrint(index);
+        std::ofstream out(argv[2]);
+        skipPrint(out, index);
 }
 
 void trim(string *word) 
@@ -74,5 +75,5 @@ void trim(string *word)
 
 int getpage(int lines)
 {
-        return (log(lines)/log(LINES_PER_PAGE) + 1);
+        return (ceil(lines/LINES_PER_PAGE));
 }

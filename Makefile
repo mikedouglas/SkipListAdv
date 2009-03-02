@@ -1,5 +1,5 @@
-CFLAGS = -g -Wall -pendantic
-#CFLAGS = -O2 -pipe
+#CFLAGS = -g -Wall -pendantic
+CFLAGS = -O2 -pipe
 CC = g++-4.2
 
 all : index
