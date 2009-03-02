@@ -13,6 +13,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+        if (argc != 3) {
+                std::cout << "usage: ./index source target" << std::endl;
+                exit(-1);
+        }
+        
         skipList *index = skipCreate();
         int lines = 0;
         string word, line;
@@ -49,6 +54,7 @@ int main(int argc, char *argv[])
 void trim(string *word) 
 {
         string::iterator it;
+        // trim non-alphas off the beginning
         for (it = (*word).begin(); it != (*word).end(); it++) {
                 if (isalpha(*it)) {
                         (*word).erase((*word).begin(), it);
@@ -59,7 +65,8 @@ void trim(string *word)
                         break;
                 }
         }
-        
+
+        // trim non-alphas off the end
         for (it = (*word).end() - 1;; it--) {
                 if (isalpha(*it)) {
                         (*word).erase(it+1, (*word).end());
